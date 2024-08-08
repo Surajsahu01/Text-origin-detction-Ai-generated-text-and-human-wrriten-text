@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Text Classification Result</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+       /* Adjust the size of the chart */
+       #myChart {
+            max-width: 300px; /* Adjust width */
+            max-height: 300px; /* Adjust height */
+        }
+        /* Your custom styles here */
+        .highlighted-ai {
+            color: red;
+        }
+        .highlighted-human {
+            color: green;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Text Classification Result</h1>
+        <div>
+            <h2>Percentages:</h2>
+            <p>AI-generated text: {{ ai_percentage }}%</p>
+            <p>Human-written text: {{ human_percentage }}%</p>
+        </div>
+        <div class="highlighted-text">
+            <h2>Highlighted Text:</h2>
+            <p>{{ highlighted_text | safe }}</p>
+        </div>
+        <div>
+            <h2>Chart:</h2>
+            <canvas id="myChart"></canvas>
+        </div>
+        <a href="/">Back</a>
+    </div>
+
+    <script>
+        // Retrieve data for the chart
+        var aiPercentage = '{{ ai_percentage }}';
+        var humanPercentage = '{{ human_percentage }}';
+
+        // Create the Chart.js doughnut chart
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['AI-generated', 'Human-written'],
+                datasets: [{
+                    data: [aiPercentage, humanPercentage],
+                    backgroundColor: ['#FF6384', '#36A2EB'],
+                }],
+            },
+            options: {
+                // Customize other chart options as needed
+            },
+        });
+    </script>
+</body>
+</html>

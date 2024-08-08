@@ -1,0 +1,70 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #2f3542;
+    color: #fff;
+    height: 100vh;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.animated-text {
+    font-size: 34px;
+    font-weight: 600;
+    min-width: 280px;
+    position: absolute;
+    top: 50%; /* Vertically center the text */
+    left: 20px; /* Adjust this value for horizontal positioning */
+    transform: translateY(-50%); /* Vertically center precisely */
+    color: #fff;
+    /* Other styling properties as needed */
+}
+
+.animated-text span{
+    position: relative;
+}
+
+.animated-text span::before {
+    content: "AI-Generated"; /* Display "AI-Generated" during the animation */
+    color: #ff7f50;
+    animation: words 20s infinite;
+}
+
+.animated-text span::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    background-color: #2f3542;
+    border-left: 2px solid #ff7f50;
+    right: -8px;
+    animation: cursor .8s infinite, typing 20s steps(14) infinite;
+}
+
+@keyframes cursor {
+    to{
+        border-left: 3px solid #ff7f5000;
+    }
+}
+
+@keyframes words {
+    0%,20%{
+        content: "AI-Generated";
+    }
+    21%,40%{
+        content: "Human-Written";
+    }
+    
+}
+
+@keyframes typing {
+    10%,15%,30%,35%,50%,55%,70%,75%,90%,95%{
+        width: 0;
+    }
+    5%,20%,25%,40%,45%,60%,65%,80%,85%{
+        width: calc(100% + 8px);
+    }
+}
